@@ -1,5 +1,5 @@
+//새로고침시 스크롤위치 복원하지 않음설정
 history.scrollRestoration = "manual"
-
 
 //사이트 부드럽게하기
 const lenis = new Lenis()
@@ -26,6 +26,8 @@ gsap.to('.sc-visual .image-grid__item img',{
 $(document).mousemove(function(e){
     mouseX = e.clientX - window.innerWidth/2;
     mouseY = e.clientY - window.innerHeight/2;
+    //현재보고 있는 화면기준으로 마우스 움직임을 받아오고
+    //window의 /2를 하여 중앙기준으로 만들어준다
     // console.log(mouseX+'//'+mouseY);
 
     $('.image-grid__item').each(function(){
@@ -33,6 +35,7 @@ $(document).mousemove(function(e){
         gsap.to(this,{
             x:mouseX/$(this).data('img'),
             y:mouseY/$(this).data('img')
+            //각각 img데이터값을 가져와준다.
         })
     })
 
@@ -43,6 +46,7 @@ $(document).mousemove(function(e){
 //nav
 const menuTl = gsap.timeline({
     paused:true,
+    //타임라인을 정지
 })
 menuTl
 .to('.gnb',.4,{xPercent:-100})
@@ -85,7 +89,6 @@ const professionalsTl = gsap.timeline({
     },
     scrollTrigger: {
         trigger: ".sc-louvre",
-        scrub: 0,
         start: "0 0",
         end: "100% 100%",
         // markers:true,
@@ -114,6 +117,7 @@ professionalsTl
 //sc-capodimonte
 //이미지
 $('[data-scroll-y]').each(function(i,el){
+    //반복문을 돌려 각각 데이터값으로 움직이도록 설정
     gsap.to(el,{
         scrollTrigger: {
             trigger: el,
@@ -183,6 +187,7 @@ const mainSlide=new Swiper('.swiper',{
     effect : 'fade', 
     fadeEffect: { 
     crossFade: true
+    //fade했을때 잔상제거
     },
     speed: 300,
 })
